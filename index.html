@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MyCard</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+  <script src="index.js"></script>
+  <link rel="stylesheet" href="styles.css"></head>
+</head>
+
+<body>
+
+  <div ng-app="myApp">
+    <hello-world> </hello-world>
+  </div>
+
+  <script>
+    angular.module('myApp', [])
+      .component('helloWorld', {
+        template: [
+          '<div>',
+          '<div>',
+          '<div><b>My Rating is {{$ctrl.rating + 1}}&nbsp;<button ng-click="$ctrl.maxRating()">Give max rating</button></b></div>',
+          '<div><b><input ng-model="$ctrl.message">&nbsp;<button ng-click="$ctrl.setMessage()">Set Text</button></b></div>',
+          ' </div>',
+          ' <p></p>',
+          '<my-card></my-card>',
+          '</div>'
+        ].join(''),
+        controller: function ($scope, $element, $attrs, $timeout) {
+          var ctrl = this;
+
+          ctrl.card = $element.find('my-card')[0];
+
+          ctrl.rating = ctrl.card.rating;
+          ctrl.message = '';
+
+          ctrl.maxRating = function () {
+            ctrl.card.rating = 4;
+          }
+
+          ctrl.card.addEventListener("ratingChange", function (data) {
+            console.log(data.detail);
+            ctrl.rating = data.detail;
+            $timeout( function() {$scope.$digest() });
+          });
+
+          ctrl.setMessage = function() {
+            ctrl.card.message = ctrl.message;
+          }
+
+          ctrl.card.addEventListener("messageChange", function (data) {
+            ctrl.message = data.detail;
+            $timeout( function() {$scope.$digest() });
+          });
+
+        }
+      });
+
+  </script>
+
+</body>
+
+</html>
