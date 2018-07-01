@@ -5,4 +5,4 @@ This is a github pages site demonstrating AngularJS working with Angular Element
 
 See it here:
 
-[https://remackgeek.github.io/angularJSDemo/]
+[angularJSDemo](https://remackgeek.github.io/angularJSDemo/)
