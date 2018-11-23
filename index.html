@@ -6,7 +6,7 @@
   <title>MyCard</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
   <script src="ae-binding.directive.js"></script>
   <script src="index.js"></script>
   <link rel="stylesheet" href="styles.css"></head>
@@ -28,7 +28,7 @@
           '<div><b><input ng-model="$ctrl.message"></b></div>',
           ' </div>',
           ' <p></p>',
-          ' <my-card rating="{{$ctrl.rating}}" message="{{$ctrl.message}}"  ae-binding ></my-card>',
+          ' <my-card ng-prop-rating="$ctrl.rating" ng-on-rating_Change="$ctrl.rating=$event.detail" ng-prop-message="$ctrl.message" ng-on-message_Change="$ctrl.message=$event.detail"   ></my-card>',
           '</div>'
         ].join(''),
         controller: function ($scope, $element, $attrs, $timeout) {
